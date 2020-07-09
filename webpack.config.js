@@ -16,13 +16,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css/, //ファイル検知　正規表現の為バックスラッシュ
+        test: /\.(css|sass|scss)/, //ファイル検知　正規表現の為バックスラッシュ
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
           },
         ],
       },
@@ -59,12 +62,16 @@ module.exports = {
       filename: './stylestheets/main.css',
     }),
     new HtmlWebpackPlugin({
-      template: './src/templates/index.pug',
+      template: './src/templates/index.pug', //ファイルhtml変換を以下に追加
       filename: 'index.html',
     }),
     new HtmlWebpackPlugin({
       template: './src/templates/access.pug',
       filename: 'access.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/templates/members/taro.pug',
+      filename: 'members/taro.html',
     }),
     new CleanWebpackPlugin(),
   ],
